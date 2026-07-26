@@ -28,3 +28,13 @@ ehthumbs.db
 # Misc
 *.swp
 *.bak
+
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+vendor/
+Gemfile.lock
+
