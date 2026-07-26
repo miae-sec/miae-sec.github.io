@@ -1,0 +1,113 @@
+/* CUSTOM PROPERTIES: COLORS, FONTS, ETC. */
+
+:root {
+  --miae-blue: #1F426B;
+  --dark-blue: #142A44;
+  --miae-red: #EE1A28;
+
+  --font-base: "Inter", system-ui, sans-serif;
+}
+
+/* GENERAL */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  font-family: var(--font-base);
+  flex: 1;
+}
+
+a {
+  font-family: var(--font-base);
+}
+
+/* NAV BAR */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 1rem 3rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #111;
+}
+
+.logo img {
+  height: 40px;
+  display: block;
+}
+
+nav {
+  display: flex;
+  gap: 3.5rem;
+  padding-right: 2rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+nav a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* FOOTER */
+
+footer {
+  background-color: #ffffff;
+  padding: 1.5rem 2rem;
+  font-family: var(--font-base);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.footer-logo {
+  height: 30px;
+}
+
+.footer-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icons img {
+  height: 25px;
+  width: 25px;
+  fill: var(--dark-blue);
+}
+
+.footer-center p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--dark-blue);
+  font-weight: bold;
+}
