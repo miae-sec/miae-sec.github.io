@@ -70,6 +70,22 @@ nav a:hover {
   text-decoration: underline;
 }
 
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  nav {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    padding-right: 0;
+  }
+}
+
 /* FOOTER */
 
 footer {
@@ -112,6 +128,14 @@ footer {
   font-size: 0.75rem;
   color: var(--dark-blue);
   font-weight: bold;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 }
 
 /* HERO SECTION */
@@ -138,11 +162,22 @@ footer {
 
 .hero-text h1 {
   font-size: 6.5em;
-  line-height: 95%;
+  line-height: 110%;
+  margin-bottom: 0;
+
+  background: linear-gradient(
+    to right,
+    rgba(5, 2, 131, 0.6) 11%,
+    rgba(255, 255, 255, 1) 27%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .hero-text h2 {
   font-size: 2rem;
+  max-width: 35%;
 }
 
 .hero-plane {
@@ -154,11 +189,29 @@ footer {
   z-index: 3;
 }
 
+@media (max-width: 900px) {
+  .hero-text h1 {
+    font-size: 4em;
+  }
+  .hero-text h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-text h1 {
+    font-size: 2.5em;
+  }
+  .hero-text h2 {
+    font-size: 1.25rem;
+  }
+}
+
 /* SUBHERO */
 
 .subhero {
   text-align: center;
-  line-height: 130%;
+  
   margin-top: 4rem;
 }
 
@@ -210,4 +263,10 @@ footer {
 
 .home-button:hover {
   background-color: #333;
+}
+
+@media (max-width: 768px) {
+  .home-cards {
+    flex-direction: column;
+  }
 }
