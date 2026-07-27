@@ -4,8 +4,10 @@
   --miae-blue: #1F426B;
   --dark-blue: #142A44;
   --miae-red: #EE1A28;
+  --grey: #7C8894 ;
+  --light-grey: #cecfd1 ;
 
-  --font-base: "Inter", system-ui, sans-serif;
+  --font-base: "Inter", sans-serif;
 }
 
 /* GENERAL */
@@ -36,7 +38,7 @@ header {
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 1rem 3rem;
+  padding: 2rem 3rem;
 }
 
 .logo {
@@ -59,12 +61,12 @@ nav {
 
 nav a {
   text-decoration: none;
-  color: #333;
+  color: black;
   font-size: 1.1rem;
 }
 
 nav a:hover {
-  color: #000;
+  color: var(--miae-blue);
   text-decoration: underline;
 }
 
@@ -110,4 +112,102 @@ footer {
   font-size: 0.75rem;
   color: var(--dark-blue);
   font-weight: bold;
+}
+
+/* HERO SECTION */
+
+.hero-image {
+  position: relative;
+  width: 100%;
+}
+
+.hero-bg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-text {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  text-align: left;
+  color: white;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  font-size: 6.5em;
+  line-height: 95%;
+}
+
+.hero-text h2 {
+  font-size: 2rem;
+}
+
+.hero-plane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+/* SUBHERO */
+
+.subhero {
+  text-align: center;
+  line-height: 130%;
+  margin-top: 4rem;
+}
+
+.subhero h2 {
+  font-size: 2.5rem;
+  color: var(--dark-blue);
+}
+
+.subhero p {
+  font-size: 1.5rem;
+}
+
+.home-cards {
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.home-card {
+  flex: 1; /* makes all three cards equal width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background-color: var(--light-grey);
+  border-radius: 4px;
+}
+
+.home-card h3 {
+  margin-top: 0;
+  font-size: x-large;
+}
+
+.home-card p {
+  flex-grow: 1; /* pushes the button to the bottom, even if text lengths differ */
+  margin-bottom: 1.5rem;
+  font-size: large;
+}
+
+.home-button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: #111;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.home-button:hover {
+  background-color: #333;
 }
