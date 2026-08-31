@@ -1,2 +1,17 @@
-# miae-sec.github.io
-MIAE SEC Website
+# MIAE Student Executive Committee Website
+
+Welcome to the McGill Insitute for Aerospace Engineering (MIAE) Student Executive Committee Website!
+
+The Student Executive Committee of the MIAE aims to promote the aerospace engineering activity at McGill and connect students with alumni, professors, researchers, and industry professionals.
+
+## About this website
+
+This website uses [Jekyll](https://jekyllrb.com/docs/) SSG and is hosted using [GitHub Pages](https://docs.github.com/en/pages)
+
+## Installation
+
+TODO
+
+## Usage
+
+TODO
