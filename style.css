@@ -1,6 +1,7 @@
 /* CUSTOM PROPERTIES: COLORS, FONTS, ETC. */
 
 :root {
+  /* brand constants — these never change between themes */
   --miae-blue: #1F426B;
   --dark-blue: #142A44;
   --miae-red: #EE1A28;
@@ -8,6 +9,97 @@
   --light-grey: #cecfd1 ;
 
   --font-base: "Inter", sans-serif;
+
+  /* semantic tokens — everything below flips in dark mode */
+  --bg: #ffffff;
+  --surface: #f2f4f6; /* card / panel fill */
+  --text: #333333;
+  --heading: var(--dark-blue);
+  --accent: var(--miae-blue);
+  --muted: var(--grey);
+  --border: var(--light-grey);
+  --nav-text: #111111;
+  --icon-bg: var(--miae-blue);
+  --icon-bg-hover: var(--dark-blue);
+  --btn-bg: var(--miae-blue);
+  --btn-bg-hover: var(--dark-blue);
+  --btn-text: #ffffff;
+  --card-shadow: rgba(20, 42, 68, 0.18);
+  --logo-filter: none;
+  --plane-opacity: 0.07;
+  --plane-filter: none;
+}
+
+/* Dark palette. Declared twice on purpose: once for visitors whose OS asks
+   for dark and who have not overridden it, once for an explicit toggle. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1A2B;
+    --surface: #17263C;
+    --text: #D5DCE5;
+    --heading: #EAF0F6;
+    --accent: #7FA9DC;
+    --muted: #93A2B5;
+    --border: #2A3A52;
+    --nav-text: #EAF0F6;
+    --icon-bg: #2C4A72;
+    --icon-bg-hover: #3A5F8C;
+    --btn-bg: #7FA9DC;
+    --btn-bg-hover: #A6C5E8;
+    --btn-text: #0E1A2B;
+    --card-shadow: rgba(0, 0, 0, 0.45);
+    /* the wordmark is navy on transparent, so it vanishes on a navy page */
+    --logo-filter: brightness(0) invert(1);
+    /* the art is solid black, which disappears on a navy page */
+    --plane-opacity: 0.06;
+    --plane-filter: invert(1);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0E1A2B;
+  --surface: #17263C;
+  --text: #D5DCE5;
+  --heading: #EAF0F6;
+  --accent: #7FA9DC;
+  --muted: #93A2B5;
+  --border: #2A3A52;
+  --nav-text: #EAF0F6;
+  --icon-bg: #2C4A72;
+  --icon-bg-hover: #3A5F8C;
+  --btn-bg: #7FA9DC;
+  --btn-bg-hover: #A6C5E8;
+  --btn-text: #0E1A2B;
+  --card-shadow: rgba(0, 0, 0, 0.45);
+  --logo-filter: brightness(0) invert(1);
+  --plane-opacity: 0.06;
+  --plane-filter: invert(1);
+}
+
+/* TYPE SCALE
+   .title / .subtitle    -> display pair, for light text over imagery
+   .title-b / .subtitle-b -> the same pair on white backgrounds */
+
+.title {
+  font-size: 6.5rem;
+  line-height: 1.1;
+  margin-bottom: 0;
+}
+
+.subtitle {
+  font-size: 2rem;
+}
+
+.title-b {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  color: var(--heading);
+}
+
+.subtitle-b {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--text);
 }
 
 /* GENERAL */
@@ -20,6 +112,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 main {
@@ -37,7 +131,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff;
+  background-color: var(--bg);
   padding: 2rem 3rem;
 }
 
@@ -45,28 +139,82 @@ header {
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
-  color: #111;
+  color: var(--nav-text);
 }
 
 .logo img {
   height: 40px;
   display: block;
+  filter: var(--logo-filter);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 nav {
   display: flex;
   gap: 3.5rem;
-  padding-right: 2rem;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  width: 36px;
+  padding: 0;
+  background: none;
+  color: var(--nav-text);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.theme-toggle svg {
+  height: 18px;
+  width: 18px;
+  fill: currentColor;
+}
+
+/* show the icon for the mode you would switch *to* */
+.theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun {
+    display: block;
+  }
+
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon {
+    display: none;
+  }
 }
 
 nav a {
   text-decoration: none;
-  color: black;
+  color: var(--nav-text);
   font-size: 1.1rem;
 }
 
 nav a:hover {
-  color: var(--miae-blue);
+  color: var(--accent);
   text-decoration: underline;
 }
 
@@ -78,63 +226,118 @@ nav a:hover {
     padding: 1rem;
   }
 
+  .header-right {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   nav {
     flex-direction: row;
     align-items: center;
     gap: 1.5rem;
-    padding-right: 0;
   }
 }
 
 /* FOOTER */
 
 footer {
-  background-color: #ffffff;
+  background-color: var(--bg);
   padding: 1.5rem 2rem;
   font-family: var(--font-base);
+  border-top: 1px solid var(--border);
 }
 
 .footer-content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   margin: 0 auto;
+}
+
+.footer-col {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.footer-col h3 {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--heading);
+}
+
+.footer-col address {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  font-style: normal;
+  color: var(--muted);
 }
 
 .footer-logo {
   height: 30px;
 }
 
-.footer-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.2rem;
-}
-
 .social-icons {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  background-color: var(--icon-bg);
+}
+
+.social-icons a:hover {
+  background-color: var(--icon-bg-hover);
 }
 
 .social-icons img {
-  height: 25px;
-  width: 25px;
-  fill: var(--dark-blue);
+  height: 18px;
+  width: 18px;
+  filter: brightness(0) invert(1); /* icon assets are black; render them white on the blue */
 }
 
-.footer-center p {
+.footer-bottom {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.footer-bottom p {
   margin: 0;
-  font-size: 0.75rem;
-  color: var(--dark-blue);
-  font-weight: bold;
+  font-size: 0.7rem;
+  color: var(--muted);
   text-align: center;
 }
 
 @media (max-width: 600px) {
   .footer-content {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .footer-col {
+    padding: 0;
+  }
+
+  .footer-col + .footer-col {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
   }
 }
 
@@ -160,11 +363,7 @@ footer {
   z-index: 2;
 }
 
-.hero-text h1 {
-  font-size: 6.5em;
-  line-height: 110%;
-  margin-bottom: 0;
-
+.hero-text .title {
   background: linear-gradient(
     to right,
     rgba(5, 2, 131, 0.6) 11%,
@@ -175,8 +374,7 @@ footer {
   color: transparent;
 }
 
-.hero-text h2 {
-  font-size: 2rem;
+.hero-text .subtitle {
   max-width: 35%;
 }
 
@@ -190,19 +388,19 @@ footer {
 }
 
 @media (max-width: 900px) {
-  .hero-text h1 {
-    font-size: 4em;
+  .hero-text .title {
+    font-size: 4rem;
   }
-  .hero-text h2 {
+  .hero-text .subtitle {
     font-size: 1.5rem;
   }
 }
 
 @media (max-width: 600px) {
-  .hero-text h1 {
-    font-size: 2.5em;
+  .hero-text .title {
+    font-size: 2.5rem;
   }
-  .hero-text h2 {
+  .hero-text .subtitle {
     font-size: 1.25rem;
   }
 }
@@ -215,13 +413,10 @@ footer {
   margin-top: 4rem;
 }
 
-.subhero h2 {
-  font-size: 2.5rem;
-  color: var(--dark-blue);
-}
-
-.subhero p {
-  font-size: 1.5rem;
+.subhero .subtitle-b {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 45rem;
 }
 
 .home-cards {
@@ -237,13 +432,14 @@ footer {
   align-items: center;
   text-align: center;
   padding: 2rem 1.5rem;
-  background-color: var(--light-grey);
+  background-color: var(--surface);
   border-radius: 4px;
 }
 
 .home-card h3 {
   margin-top: 0;
   font-size: x-large;
+  color: var(--heading);
 }
 
 .home-card p {
@@ -255,18 +451,215 @@ footer {
 .home-button {
   display: inline-block;
   padding: 0.6rem 1.2rem;
-  background-color: #111;
-  color: #fff;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
   text-decoration: none;
   border-radius: 4px;
 }
 
 .home-button:hover {
-  background-color: #333;
+  background-color: var(--btn-bg-hover);
 }
 
 @media (max-width: 768px) {
   .home-cards {
     flex-direction: column;
+  }
+}
+
+/* ABOUT PAGE */
+
+.page-intro {
+  max-width: 60rem;
+  margin: 4rem auto 0;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.page-intro .title-b {
+  margin-bottom: 0.75rem;
+}
+
+.title-rule {
+  display: block;
+  width: 80px;
+  height: auto;
+  margin: 0 auto 1.5rem;
+  fill: var(--miae-red);
+}
+
+.accent-red {
+  color: var(--miae-red);
+  font-weight: 600;
+}
+
+.team-photo-wide {
+  max-width: 75rem;
+  margin: 3rem auto 0;
+  padding: 0 2rem;
+}
+
+.team-photo-wide img {
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.team-title {
+  margin: 4rem 0 0;
+  text-align: center;
+}
+
+/* small uppercase label introducing each group of members */
+.section-heading {
+  display: flex;
+  justify-content: center;
+  max-width: 75rem;
+  margin: 2rem auto 1.25rem;
+  padding: 0 2rem;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 75rem;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  background-color: var(--surface);
+  border: none;
+  /* the red rule is the resting state's hidden accent; hover reveals it */
+  border-bottom: 3px solid transparent;
+  border-radius: 4px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.team-card:hover,
+.team-card:focus-visible {
+  border-bottom-color: var(--miae-red);
+}
+
+.team-headshot {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.team-text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1.25rem;
+}
+
+.team-name {
+  margin: 0;
+  font-size: 1.15rem;
+  text-align: center;
+  color: var(--heading);
+}
+
+.team-role {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--accent);
+}
+
+/* BIO DIALOG */
+
+.team-dialog {
+  width: min(34rem, calc(100vw - 2rem));
+  padding: 2rem;
+  background-color: var(--surface);
+  color: var(--text);
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-base);
+}
+
+.team-dialog::backdrop {
+  background-color: rgba(10, 18, 30, 0.6);
+}
+
+.team-dialog-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.team-dialog-close:hover {
+  color: var(--heading);
+}
+
+.team-dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.team-dialog-header img {
+  flex-shrink: 0;
+  height: 90px;
+  width: 90px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 50%;
+}
+
+.team-dialog-header .team-name,
+.team-dialog-header .team-role {
+  text-align: left;
+}
+
+.team-bio {
+  margin: 1.25rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+@media (max-width: 600px) {
+  .page-intro {
+    margin-top: 2.5rem;
+  }
+
+  .title-b {
+    font-size: 1.9rem;
+  }
+
+  .subtitle-b {
+    font-size: 1rem;
   }
 }
