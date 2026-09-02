@@ -1,22 +1,11 @@
 <header>
   <a href="/" class="logo">
-    <img src="/assets/miaewhitebig.png" alt="MIAE logo" height="40">
+    <img src="/assets/logo.jpg" alt="MIAE logo" height="40">
   </a>
-  <div class="header-right">
-    <nav>
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/events">Events</a>
-    </nav>
-    <button class="theme-toggle" type="button" aria-label="Switch between light and dark mode">
-      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>
-      </svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="12" r="4.5"/>
-        <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-      </svg>
-    </button>
-  </div>
+  <nav>
+    {% comment %} permalink: pretty means page.url is "/about/", so match on a prefix {% endcomment %}
+    <a href="/"{% if page.url == '/' %} class="is-active" aria-current="page"{% endif %}>Home</a>
+    <a href="/about"{% if page.url contains '/about' %} class="is-active" aria-current="page"{% endif %}>About</a>
+    <a href="/events"{% if page.url contains '/events' %} class="is-active" aria-current="page"{% endif %}>Events</a>
+  </nav>
 </header>

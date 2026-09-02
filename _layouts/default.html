@@ -5,18 +5,6 @@
   <meta name="viewport" content="width=device-width, intial-scale=1.0">
   <title>{{ page.title }} | {{ site.title }}</title>
   <link rel="stylesheet" href="/style.css">
-  <script>
-    /* Runs before first paint so a saved dark preference doesn't flash white.
-       No stored value means "follow the OS", handled by CSS alone. */
-    (function () {
-      try {
-        var saved = localStorage.getItem('theme');
-        if (saved === 'dark' || saved === 'light') {
-          document.documentElement.setAttribute('data-theme', saved);
-        }
-      } catch (e) { /* private browsing can throw on localStorage */ }
-    })();
-  </script>
 </head>
 <body>
   {% include header.html %}
@@ -26,29 +14,5 @@
   </main>
 
   {% include footer.html %}
-
-  <script>
-    (function () {
-      var toggle = document.querySelector('.theme-toggle');
-      if (!toggle) return;
-
-      var root = document.documentElement;
-
-      toggle.addEventListener('click', function () {
-        var current = root.getAttribute('data-theme');
-        if (!current) {
-          /* no explicit choice yet — read what the OS is currently giving us */
-          current = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-
-        var next = current === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', next);
-
-        try {
-          localStorage.setItem('theme', next);
-        } catch (e) { /* ignore if storage is unavailable */ }
-      });
-    })();
-  </script>
 </body>
 </html>

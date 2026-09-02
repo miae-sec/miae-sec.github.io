@@ -1,7 +1,6 @@
 /* CUSTOM PROPERTIES: COLORS, FONTS, ETC. */
 
 :root {
-  /* brand constants — these never change between themes */
   --miae-blue: #1F426B;
   --dark-blue: #142A44;
   --miae-red: #EE1A28;
@@ -10,70 +9,8 @@
 
   --font-base: "Inter", sans-serif;
 
-  /* semantic tokens — everything below flips in dark mode */
-  --bg: #ffffff;
   --surface: #f2f4f6; /* card / panel fill */
   --text: #333333;
-  --heading: var(--dark-blue);
-  --accent: var(--miae-blue);
-  --muted: var(--grey);
-  --border: var(--light-grey);
-  --nav-text: #111111;
-  --icon-bg: var(--miae-blue);
-  --icon-bg-hover: var(--dark-blue);
-  --btn-bg: var(--miae-blue);
-  --btn-bg-hover: var(--dark-blue);
-  --btn-text: #ffffff;
-  --card-shadow: rgba(20, 42, 68, 0.18);
-  --logo-filter: none;
-  --plane-opacity: 0.07;
-  --plane-filter: none;
-}
-
-/* Dark palette. Declared twice on purpose: once for visitors whose OS asks
-   for dark and who have not overridden it, once for an explicit toggle. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0E1A2B;
-    --surface: #17263C;
-    --text: #D5DCE5;
-    --heading: #EAF0F6;
-    --accent: #7FA9DC;
-    --muted: #93A2B5;
-    --border: #2A3A52;
-    --nav-text: #EAF0F6;
-    --icon-bg: #2C4A72;
-    --icon-bg-hover: #3A5F8C;
-    --btn-bg: #7FA9DC;
-    --btn-bg-hover: #A6C5E8;
-    --btn-text: #0E1A2B;
-    --card-shadow: rgba(0, 0, 0, 0.45);
-    /* the wordmark is navy on transparent, so it vanishes on a navy page */
-    --logo-filter: brightness(0) invert(1);
-    /* the art is solid black, which disappears on a navy page */
-    --plane-opacity: 0.06;
-    --plane-filter: invert(1);
-  }
-}
-
-:root[data-theme="dark"] {
-  --bg: #0E1A2B;
-  --surface: #17263C;
-  --text: #D5DCE5;
-  --heading: #EAF0F6;
-  --accent: #7FA9DC;
-  --muted: #93A2B5;
-  --border: #2A3A52;
-  --nav-text: #EAF0F6;
-  --icon-bg: #2C4A72;
-  --icon-bg-hover: #3A5F8C;
-  --btn-bg: #7FA9DC;
-  --btn-bg-hover: #A6C5E8;
-  --btn-text: #0E1A2B;
-  --card-shadow: rgba(0, 0, 0, 0.45);
-  --logo-filter: brightness(0) invert(1);
-  --plane-opacity: 0.06;
-  --plane-filter: invert(1);
 }
 
 /* TYPE SCALE
@@ -93,7 +30,7 @@
 .title-b {
   font-size: 2.5rem;
   line-height: 1.2;
-  color: var(--heading);
+  color: var(--dark-blue);
 }
 
 .subtitle-b {
@@ -104,15 +41,14 @@
 
 /* GENERAL */
 
-html, body {
-  height: 100%;
-}
-
+/* No height: 100% here — that would cap <body> at one viewport and stop the
+   sticky header sticking past the first screen. min-height + flex still pins
+   the footer to the bottom on short pages. */
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--bg);
+  background-color: #ffffff;
   color: var(--text);
 }
 
@@ -128,94 +64,70 @@ a {
 /* NAV BAR */
 
 header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--bg);
-  padding: 2rem 3rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--light-grey);
+  /* tighter than the old 2rem — a sticky bar shouldn't eat the viewport */
+  padding: 1rem 3rem;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
-  color: var(--nav-text);
+  color: #111;
 }
 
 .logo img {
   height: 40px;
   display: block;
-  filter: var(--logo-filter);
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
 }
 
 nav {
   display: flex;
-  gap: 3.5rem;
-}
-
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 36px;
-  width: 36px;
-  padding: 0;
-  background: none;
-  color: var(--nav-text);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.theme-toggle:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
-.theme-toggle svg {
-  height: 18px;
-  width: 18px;
-  fill: currentColor;
-}
-
-/* show the icon for the mode you would switch *to* */
-.theme-toggle .icon-sun {
-  display: none;
-}
-
-:root[data-theme="dark"] .theme-toggle .icon-sun {
-  display: block;
-}
-
-:root[data-theme="dark"] .theme-toggle .icon-moon {
-  display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-toggle .icon-sun {
-    display: block;
-  }
-
-  :root:not([data-theme="light"]) .theme-toggle .icon-moon {
-    display: none;
-  }
+  gap: 2.25rem;
 }
 
 nav a {
+  position: relative;
+  padding: 0.4rem 0;
   text-decoration: none;
-  color: var(--nav-text);
-  font-size: 1.1rem;
+  color: #111;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* red underline sweeping in, echoing the swoosh in the logo */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: var(--miae-red);
+  transform: scaleX(0);
+  transition: transform 0.18s ease;
+}
+
+nav a:hover::after,
+nav a:focus-visible::after,
+nav a.is-active::after {
+  transform: scaleX(1);
 }
 
 nav a:hover {
-  color: var(--accent);
-  text-decoration: underline;
+  color: var(--miae-blue);
+}
+
+nav a.is-active {
+  color: var(--miae-blue);
+  font-weight: 600;
 }
 
 @media (max-width: 600px) {
@@ -224,11 +136,6 @@ nav a:hover {
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-  }
-
-  .header-right {
-    flex-direction: column;
-    gap: 1rem;
   }
 
   nav {
@@ -241,10 +148,10 @@ nav a:hover {
 /* FOOTER */
 
 footer {
-  background-color: var(--bg);
+  background-color: #ffffff;
   padding: 1.5rem 2rem;
   font-family: var(--font-base);
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--light-grey);
 }
 
 .footer-content {
@@ -271,7 +178,7 @@ footer {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--heading);
+  color: var(--dark-blue);
 }
 
 .footer-col address {
@@ -279,7 +186,7 @@ footer {
   font-size: 0.8rem;
   line-height: 1.6;
   font-style: normal;
-  color: var(--muted);
+  color: var(--grey);
 }
 
 .footer-logo {
@@ -298,11 +205,11 @@ footer {
   height: 34px;
   width: 34px;
   border-radius: 50%;
-  background-color: var(--icon-bg);
+  background-color: var(--miae-blue);
 }
 
 .social-icons a:hover {
-  background-color: var(--icon-bg-hover);
+  background-color: var(--dark-blue);
 }
 
 .social-icons img {
@@ -314,13 +221,13 @@ footer {
 .footer-bottom {
   margin-top: 1.5rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--light-grey);
 }
 
 .footer-bottom p {
   margin: 0;
   font-size: 0.7rem;
-  color: var(--muted);
+  color: var(--grey);
   text-align: center;
 }
 
@@ -336,7 +243,7 @@ footer {
 
   .footer-col + .footer-col {
     border-left: none;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--light-grey);
     padding-top: 1.25rem;
   }
 }
@@ -439,7 +346,7 @@ footer {
 .home-card h3 {
   margin-top: 0;
   font-size: x-large;
-  color: var(--heading);
+  color: var(--dark-blue);
 }
 
 .home-card p {
@@ -451,14 +358,14 @@ footer {
 .home-button {
   display: inline-block;
   padding: 0.6rem 1.2rem;
-  background-color: var(--btn-bg);
-  color: var(--btn-text);
+  background-color: var(--miae-blue);
+  color: #fff;
   text-decoration: none;
   border-radius: 4px;
 }
 
 .home-button:hover {
-  background-color: var(--btn-bg-hover);
+  background-color: var(--dark-blue);
 }
 
 @media (max-width: 768px) {
@@ -525,7 +432,7 @@ footer {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--miae-blue);
 }
 
 .team-grid {
@@ -575,7 +482,7 @@ footer {
   margin: 0;
   font-size: 1.15rem;
   text-align: center;
-  color: var(--heading);
+  color: var(--dark-blue);
 }
 
 .team-role {
@@ -585,7 +492,7 @@ footer {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-align: center;
-  color: var(--accent);
+  color: var(--miae-blue);
 }
 
 /* BIO DIALOG */
@@ -613,12 +520,12 @@ footer {
   border: none;
   font-size: 1.5rem;
   line-height: 1;
-  color: var(--muted);
+  color: var(--grey);
   cursor: pointer;
 }
 
 .team-dialog-close:hover {
-  color: var(--heading);
+  color: var(--dark-blue);
 }
 
 .team-dialog-header {
@@ -626,7 +533,7 @@ footer {
   align-items: center;
   gap: 1.25rem;
   padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--light-grey);
 }
 
 .team-dialog-header img {
