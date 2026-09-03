@@ -22,14 +22,14 @@ If you'd like to contribute an event description to add to our website, please f
 4. Write the properties of the file:
 ```markdown
 ---
-title: _title of event_
+title: title of event
 tags: 
- -  _type of event_
- cover: _path to cover image, use `/assets/events/`_
+ -  type of event
+ cover: path to cover image, use /assets/events/
  media:
-  - _bulleted list of other images to include
+  - bulleted list of other images to include
 ---
-_Description of the event. If you're unfamiliar with markdown, see [this](https://www.markdownguide.org/) guide._
+Description of the event. If you're unfamiliar with markdown, see [this](https://www.markdownguide.org/) guide.
 ```
 
 5. After running the website you should see this event show in the events tab
@@ -63,4 +63,3 @@ If you'd like to add yourself or a member to the team, please follow these steps
     3. `git push`
 6. Open a [PR](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request) and tag one of the members of the organization as a reviewer.
 7. Once approved, merge your PR and see your event on the MIAE website!
-. 
