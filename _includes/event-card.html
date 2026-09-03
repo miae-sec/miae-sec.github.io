@@ -1,0 +1,20 @@
+{% comment %} Expects: event. Used for both the upcoming and past grids. {% endcomment %}
+{% comment %} date + slug: two events can share a slug (aerofair 2024/2025) {% endcomment %}
+{% assign slug = include.event.date | date: '%Y-%m-%d' | append: '-' | append: include.event.slug %}
+<button class="event-card" type="button" aria-controls="event-{{ slug }}">
+  {% if include.event.cover %}
+    <img class="event-cover" src="{{ include.event.cover }}" alt="{{ include.event.title }}" loading="lazy">
+  {% else %}
+    <span class="event-cover event-cover--empty" aria-hidden="true"></span>
+  {% endif %}
+
+  <span class="event-text">
+    <span class="event-date">{{ include.event.date | date: "%B %-d, %Y" }}</span>
+    <span class="event-name">{{ include.event.title }}</span>
+    <span class="event-tags">
+      {% for tag in include.event.tags %}
+        <span class="event-tag event-tag--{{ tag | slugify }}">{{ tag }}</span>
+      {% endfor %}
+    </span>
+  </span>
+</button>

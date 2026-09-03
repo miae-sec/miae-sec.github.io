@@ -444,7 +444,8 @@ footer {
   padding: 0 2rem;
 }
 
-.team-card {
+.team-card,
+.event-card {
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -455,12 +456,15 @@ footer {
   border-bottom: 3px solid transparent;
   border-radius: 4px;
   font-family: inherit;
+  text-align: left;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
 .team-card:hover,
-.team-card:focus-visible {
+.team-card:focus-visible,
+.event-card:hover,
+.event-card:focus-visible {
   border-bottom-color: var(--miae-red);
 }
 
@@ -495,11 +499,15 @@ footer {
   color: var(--miae-blue);
 }
 
-/* BIO DIALOG */
+/* DIALOGS (bio + event) */
 
 .team-dialog {
-  width: min(34rem, calc(100vw - 2rem));
   padding: 2rem;
+}
+
+.team-dialog,
+.event-dialog {
+  width: min(34rem, calc(100vw - 2rem));
   background-color: var(--surface);
   color: var(--text);
   border: none;
@@ -507,11 +515,13 @@ footer {
   font-family: var(--font-base);
 }
 
-.team-dialog::backdrop {
+.team-dialog::backdrop,
+.event-dialog::backdrop {
   background-color: rgba(10, 18, 30, 0.6);
 }
 
-.team-dialog-close {
+.team-dialog-close,
+.event-dialog-close {
   position: absolute;
   top: 0.5rem;
   right: 0.75rem;
@@ -524,7 +534,8 @@ footer {
   cursor: pointer;
 }
 
-.team-dialog-close:hover {
+.team-dialog-close:hover,
+.event-dialog-close:hover {
   color: var(--dark-blue);
 }
 
@@ -555,6 +566,193 @@ footer {
   font-size: 0.9rem;
   line-height: 1.65;
   color: var(--text);
+}
+
+/* EVENTS PAGE */
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 75rem;
+  margin: 3rem auto 4rem;
+  padding: 0 2rem;
+}
+
+.event-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* stands in until a cover image is added to the event's front matter */
+.event-cover--empty {
+  background-color: var(--light-grey);
+  background-image: url("/assets/airplane.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 42px 42px;
+  opacity: 0.55;
+}
+
+.event-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  flex-grow: 1;
+  padding: 1.25rem;
+}
+
+.event-date {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.event-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--dark-blue);
+}
+
+/* TAGS */
+
+.event-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto; /* pins tags to the card's bottom edge */
+  padding-top: 0.5rem;
+}
+
+.event-tag {
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.event-tag--academic {
+  background-color: #e4ecf6;
+  color: var(--miae-blue);
+}
+
+.event-tag--professional {
+  background-color: #dfe4eb;
+  color: var(--dark-blue);
+}
+
+.event-tag--social {
+  background-color: #fce3e5;
+  color: #b3141f;
+}
+
+.event-tag--technical {
+  background-color: #e6eaed;
+  color: #4f5b68;
+}
+
+/* EVENT DIALOG */
+
+.event-dialog {
+  padding: 0;
+  /* the write-ups run long — scroll inside the dialog rather than clipping */
+  max-height: min(85vh, 48rem);
+  overflow-y: auto;
+}
+
+/* the close button sits over the cover photo, so give it its own backing */
+.event-dialog-close {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-dialog-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.event-dialog-body {
+  padding: 1.75rem;
+}
+
+.event-dialog-title {
+  margin: 0.35rem 0 0;
+  font-size: 1.4rem;
+  line-height: 1.25;
+  color: var(--dark-blue);
+}
+
+.event-dialog-body .event-date {
+  display: block;
+  margin: 0;
+}
+
+.event-dialog-body .event-tags {
+  margin-top: 0.9rem;
+  padding-top: 0;
+}
+
+.event-detail {
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.event-detail p {
+  margin: 0 0 0.9rem;
+}
+
+.event-detail p:last-child {
+  margin-bottom: 0;
+}
+
+.event-media-heading {
+  margin: 1.75rem 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--miae-blue);
+}
+
+.event-media {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.event-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.event-empty {
+  max-width: 75rem;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
+  text-align: center;
+  color: var(--grey);
+  font-size: 0.95rem;
 }
 
 @media (max-width: 600px) {

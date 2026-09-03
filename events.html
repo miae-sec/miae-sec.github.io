@@ -2,4 +2,110 @@
 layout: default
 title: MIAE - Events
 ---
-<h1 class="title">Events</h1>
+<div class="page-intro">
+  <h1 class="title-b">Events</h1>
+  <svg class="title-rule" viewBox="0 0 80 8" role="presentation" focusable="false">
+    <path d="M0,6 C25,6 55,3 80,0 L80,2 C55,5 25,8 0,8 Z"/>
+  </svg>
+  <p class="subtitle-b">
+    Everything the
+    <span class="accent-red">MIAE Student Executive Committee</span> has put on for the McGill aerospace community.
+  </p>
+</div>
+
+{% assign upcoming = site.events | where_exp: "e", "e.date >= site.time" | sort: 'date' %}
+{% assign past = site.events | where_exp: "e", "e.date < site.time" | sort: 'date' | reverse %}
+
+<section class="event-section">
+  <div class="section-heading">
+    <h2>Upcoming</h2>
+  </div>
+
+  {% if upcoming.size > 0 %}
+    <div class="event-grid">
+      {% for event in upcoming %}
+        {% include event-card.html event=event %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="event-empty">
+      Check back soon, we're busy planning the next one. 
+    </p>
+  {% endif %}
+</section>
+
+{% if past.size > 0 %}
+  <section class="event-section">
+    <div class="section-heading">
+      <h2>Past Events</h2>
+    </div>
+
+    <div class="event-grid">
+      {% for event in past %}
+        {% include event-card.html event=event %}
+      {% endfor %}
+    </div>
+
+  </section>
+{% endif %}
+
+{% assign events = upcoming | concat: past %}
+{% for event in events %}
+  {% comment %} date + slug: two events can share a slug (aerofair 2024/2025) {% endcomment %}
+  {% assign slug = event.date | date: '%Y-%m-%d' | append: '-' | append: event.slug %}
+  <dialog class="event-dialog" id="event-{{ slug }}">
+    <button class="event-dialog-close" type="button" aria-label="Close">&times;</button>
+
+    {% if event.cover %}
+      <img class="event-dialog-cover" src="{{ event.cover }}" alt="" loading="lazy">
+    {% else %}
+      <span class="event-dialog-cover event-cover--empty" aria-hidden="true"></span>
+    {% endif %}
+
+    <div class="event-dialog-body">
+      <p class="event-date">
+        {{ event.date | date: "%B %-d, %Y" }}{% if event.location %} · {{ event.location }}{% endif %}
+      </p>
+      <h3 class="event-dialog-title">{{ event.title }}</h3>
+
+      <div class="event-tags">
+        {% for tag in event.tags %}
+          <span class="event-tag event-tag--{{ tag | slugify }}">{{ tag }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="event-detail">{{ event.content | markdownify }}</div>
+
+      {% if event.media and event.media.size > 0 %}
+        <h4 class="event-media-heading">Photos</h4>
+        <div class="event-media">
+          {% for photo in event.media %}
+            <img src="{{ photo }}" alt="" loading="lazy">
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </dialog>
+{% endfor %}
+
+<script>
+  /* ---- card -> dialog ---- */
+  document.querySelectorAll('.event-card').forEach(function (card) {
+    var dialog = document.getElementById(card.getAttribute('aria-controls'));
+    if (!dialog) return;
+
+    card.addEventListener('click', function () {
+      dialog.showModal();
+    });
+
+    dialog.querySelector('.event-dialog-close').addEventListener('click', function () {
+      dialog.close();
+    });
+
+    /* clicking outside the dialog box closes it too */
+    dialog.addEventListener('click', function (event) {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+
+</script>

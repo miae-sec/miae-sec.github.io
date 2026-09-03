@@ -5,7 +5,7 @@
   <nav>
     {% comment %} permalink: pretty means page.url is "/about/", so match on a prefix {% endcomment %}
     <a href="/"{% if page.url == '/' %} class="is-active" aria-current="page"{% endif %}>Home</a>
-    <a href="/about"{% if page.url contains '/about' %} class="is-active" aria-current="page"{% endif %}>About</a>
     <a href="/events"{% if page.url contains '/events' %} class="is-active" aria-current="page"{% endif %}>Events</a>
+    <a href="/about"{% if page.url contains '/about' %} class="is-active" aria-current="page"{% endif %}>About</a>
   </nav>
 </header>
