@@ -1,0 +1,82 @@
+# Committee roster for the About page.
+#
+# Groups render in the order listed here, and members render in the order
+# listed within each group. Each headshot is looked up at
+# /assets/team/<name-slugified>.jpg — "Edouard Dupont" -> edouard-dupont.jpg.
+
+- title: Co-Presidents
+  members:
+    - name: Edouard Dupont
+      role: Co-President
+      bio: >
+        Edouard Dupont is a third-year Software Engineering student at McGill University and the
+        co-president of the McGill Institute of Aerospace Engineering (MIAE). He joined the committee
+        two years ago as VP Media, where he helped grow the club's visibility and engagement. A
+        passionate advocate for aerospace innovation, Edouard completed ground school training and
+        enjoys sharing his enthusiasm for aviation and space technologies with fellow students.
+        Beyond MIAE, has three internships in the finance industry, giving him a unique
+        interdisciplinary perspective that bridges engineering and business.
+
+    - name: Santiago Padron
+      role: Co-President
+      bio: >
+        Bio coming soon.
+
+- title: Media
+  members:
+    - name: Trevor Piltch
+      role: VP Technology
+      bio: >
+        As VP Technology, Trevor drives the digital presence of the MIAE through website development
+        and content management, curating event listings that connects members with the MIAE's history
+        and emerging opportunities. Drawing on his previous role as VP Finance, where he steered budget
+        allocation and financial planning, Trevor brings a comprehensive understanding of the MIAE's
+        operational landscape. His technical expertise extends beyond the MIAE through his previous
+        leadership of the McGill Rocket Team's Flight Computer Software division.
+
+    - name: Linamay Ayad
+      role: VP Communications
+      bio: >
+        Linamay is a U3 Mechanical Engineering student at McGill University with a strong passion for
+        aerospace and automotive systems. As VP Communications for the McGill Institute of Aerospace
+        Engineering (MIAE), she manages internal and external communications and outreach initiatives,
+        and helps promote MIAE events and opportunities to the student community.
+
+    - name: Olivia Song
+      role: VP Media
+      bio: >
+        As VP of Media for MIAE, Olivia oversees the club's visual and digital storytelling across all
+        platforms. She is responsible for creating compelling content that showcases the clubs events,
+        amplifies member voices, and builds community engagement. Through photography, videography, and
+        creative design, she captures the energy and impact of the club's activities.
+
+- title: Operations
+  members:
+    - name: Ishtiak Ahmed
+      role: VP Operations
+      bio: >
+        As VP Operations, Ishtiak ensures that every event runs seamlessly and without unnecessary
+        obstacles. His responsibilities include creating and managing sign-up sheets and feedback forms
+        to enhance student engagement and improve future events. He actively seeks out potential
+        companies and external partners interested in collaborating on events, helping strengthen the
+        society's network and opportunities. In addition, he develops detailed proposals for new event
+        ideas and oversees all logistical arrangements, ensuring that every detail is carefully planned
+        and executed to deliver successful and impactful events.
+
+    - name: Gabriel Nader
+      role: VP Finance
+      bio: >
+        Gabriel Nader is a second-year Mechanical Engineering student at McGill University with an
+        interest in aerospace engineering and hands-on technical work. He has completed three
+        internships in the aerospace industry, where he gained experience working on engineering
+        projects and in team-based environments. As Vice President of Finance, Gabriel supports the
+        planning and coordination of events and helps ensure operations run smoothly throughout the
+        year. He enjoys working on technical challenges and contributing to projects that support
+        student involvement in aerospace.
+
+    - name: Vedant Ranganathan
+      role: VP Internal
+      bio: >
+        As VP Internal for MIAE, Vedant is responsible for fostering a strong and inclusive community
+        within the organization. They oversee member engagement, coordinate internal communications,
+        and organize team-building activities that strengthen bonds among members.

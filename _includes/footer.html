@@ -1,10 +1,16 @@
 <footer>
   <div class="footer-content">
-    <a href="/">
-      <img src="/assets/miaewhitebig.png" alt="MIAE Logo" class="footer-logo">
-    </a>
+    <div class="footer-col">
+      <h3>Visit Us</h3>
+      <address>
+        3480 Rue University<br>
+        FDA 6<br>
+        Montreal QC H3A 0E8
+      </address>
+    </div>
 
-    <div class="footer-center">
+    <div class="footer-col">
+      <h3>Get In Touch</h3>
       <div class="social-icons">
         <a href="https://www.linkedin.com/company/mcgill-miae" target="_blank" rel="noopener" aria-label="LinkedIn">
           <img src="/assets/linkedin.svg" alt="">
@@ -19,11 +25,16 @@
           <img src="/assets/mail.svg" alt="">
         </a>
       </div>
-      <p>&copy; {{ site.time | date: "%Y" }} McGill Institute for Aerospace Engineering Student Executive Committee</p>
     </div>
 
-    <a href="https://www.mcgill.ca/miae/" target="_blank" rel="noopener">
-      <img src="/assets/mcgill_sig_red.png" alt="McGill Logo" class="footer-logo">
-    </a>
+    <div class="footer-col">
+      <a href="https://www.mcgill.ca/miae/" target="_blank" rel="noopener">
+        <img src="/assets/mcgill_sig_red.png" alt="McGill Logo" class="footer-logo">
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {{ site.time | date: "%Y" }} McGill Institute for Aerospace Engineering Student Executive Committee</p>
   </div>
 </footer>

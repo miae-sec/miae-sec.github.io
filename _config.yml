@@ -3,3 +3,10 @@ url: ""
 baseurl: ""
 description: The Student Executive Committee of the MIAE
 permalink: pretty
+
+collections:
+  events:
+    # Events render as cards + dialogs on /events rather than as their own
+    # pages. Flip to true (and add _layouts/event.html) if you ever want a
+    # shareable URL per event.
+    output: false
