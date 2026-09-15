@@ -2,7 +2,12 @@
   <a href="/" class="logo">
     <img src="/assets/logo.jpg" alt="MIAE logo" height="40">
   </a>
-  <nav>
+
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+    <span class="nav-toggle-bars" aria-hidden="true"></span>
+  </button>
+
+  <nav id="site-nav">
     {% comment %} permalink: pretty means page.url is "/about/", so match on a prefix {% endcomment %}
     <a href="/"{% if page.url == '/' %} class="is-active" aria-current="page"{% endif %}>Home</a>
     <a href="/aerofair"{% if page.url contains '/aerofair' %} class="is-active" aria-current="page"{% endif %}>Aerofair</a>
@@ -11,3 +16,39 @@
     <a href="/partnership"{% if page.url contains '/partnership' %} class="is-active" aria-current="page"{% endif %}>Partner</a>
   </nav>
 </header>
+
+<script>
+  (function () {
+    var header = document.querySelector('header');
+    var toggle = header && header.querySelector('.nav-toggle');
+    var nav = document.getElementById('site-nav');
+    if (!header || !toggle || !nav) return;
+
+    /* only collapse the nav once the script has run — with JS off the links
+       stay visible (wrapped) rather than hiding behind a dead button */
+    header.classList.add('has-nav-toggle');
+
+    function setOpen(open) {
+      header.classList.toggle('nav-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    /* the link navigates anyway; closing stops the panel flashing on the way out */
+    nav.addEventListener('click', function (event) {
+      if (event.target.closest('a')) setOpen(false);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') setOpen(false);
+    });
+
+    /* resizing past the breakpoint shouldn't leave the panel state stuck */
+    window.matchMedia('(min-width: 769px)').addEventListener('change', function (event) {
+      if (event.matches) setOpen(false);
+    });
+  })();
+</script>

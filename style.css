@@ -130,18 +130,106 @@ nav a.is-active {
   font-weight: 600;
 }
 
-@media (max-width: 600px) {
+/* HAMBURGER (small screens) */
+
+.nav-toggle {
+  display: none; /* the media query below turns it on */
+  position: relative;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--dark-blue);
+  cursor: pointer;
+}
+
+/* three bars from one element: the span is the middle one, the outer two are
+   its pseudo-elements offset above and below */
+.nav-toggle-bars,
+.nav-toggle-bars::before,
+.nav-toggle-bars::after {
+  position: absolute;
+  left: 50%;
+  height: 2px;
+  width: 22px;
+  margin-left: -11px;
+  background-color: currentColor;
+  transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.nav-toggle-bars {
+  top: 50%;
+  margin-top: -1px;
+}
+
+.nav-toggle-bars::before,
+.nav-toggle-bars::after {
+  content: "";
+  left: 0;
+  margin-left: 0;
+}
+
+.nav-toggle-bars::before {
+  top: -7px;
+}
+
+.nav-toggle-bars::after {
+  top: 7px;
+}
+
+/* open: the middle bar drops out and the other two cross into an X */
+.nav-open .nav-toggle-bars {
+  background-color: transparent;
+}
+
+.nav-open .nav-toggle-bars::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-open .nav-toggle-bars::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  /* no-JS fallback: the links wrap onto their own line instead of overflowing */
   header {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem 1.25rem;
   }
 
   nav {
-    flex-direction: row;
-    align-items: center;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 1.25rem;
+  }
+
+  /* with JS, collapse that row behind the button */
+  .has-nav-toggle .nav-toggle {
+    display: block;
+  }
+
+  .has-nav-toggle nav {
+    display: none;
+    order: 3; /* full-width row under the logo and button */
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+
+  .has-nav-toggle.nav-open nav {
+    display: flex;
+  }
+
+  .has-nav-toggle nav a {
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--light-grey);
+  }
+
+  /* the sweeping underline reads as a stray rule in a stacked list */
+  .has-nav-toggle nav a::after {
+    display: none;
   }
 }
 
