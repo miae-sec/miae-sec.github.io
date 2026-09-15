@@ -1,0 +1,158 @@
+---
+layout: default
+title: MIAE - Aerofair
+---
+<section class="af-hero">
+  <img class="af-hero-bg" src="/assets/events/aerofair-2025/cover.jpg" alt="" loading="lazy">
+  <div class="af-hero-text">
+    <p class="af-kicker">Our flagship event</p>
+    <h1 class="af-hero-title">Aerofair</h1>
+    <p class="af-hero-tagline">McGill's only student-focused aerospace career fair.</p>
+    <p class="af-hero-date">Fall 2026 &middot; Date to be announced</p>
+  </div>
+</section>
+
+<div class="page-intro">
+  <h1 class="title-b">One room, the whole industry</h1>
+    <p class="subtitle-b">
+    Aerofair brings <span class="accent-red">leading aerospace companies from across Montreal</span>
+    together with engineering students from McGill and other Montreal universities for a day of live
+    presentations, booths, and one-on-one conversations between the people hiring and the students
+    who want to build what comes next.
+  </p>
+</div>
+
+<section class="af-section">
+  <div class="section-heading">
+    <h2>Last year in numbers</h2>
+  </div>
+
+  <div class="af-stats">
+    <div class="af-stat">
+      <span class="af-stat-figure">200+</span>
+      <span class="af-stat-label">Students registered</span>
+    </div>
+    <div class="af-stat">
+      <span class="af-stat-figure">11</span>
+      <span class="af-stat-label">Companies present</span>
+    </div>
+    <div class="af-stat">
+      <span class="af-stat-figure">8+</span>
+      <span class="af-stat-label">Engineering programs</span>
+    </div>
+  </div>
+</section>
+
+<section class="af-section">
+  <div class="section-heading">
+    <h2>What to expect</h2>
+  </div>
+
+  <div class="af-split">
+    <div class="af-panel">
+      <h3>For students</h3>
+      <p>
+        Direct access to leading aerospace companies, live presentations, and one-on-one networking
+        with representatives about careers and internships. Bring a CV and come curious: most of
+        what happens at Aerofair happens in conversation.
+      </p>
+    </div>
+
+    <div class="af-panel af-panel--link">
+      <h3>For companies</h3>
+      <p>
+        Direct access to engineering talent from across Montréal, with a platform to present and
+        connect with future hires early.
+      </p>
+      <a class="af-button" href="/partnership">Partner with us</a>
+    </div>
+  </div>
+</section>
+
+<section class="af-section">
+  <div class="section-heading">
+    <h2>Last year's companies</h2>
+  </div>
+
+  <ul class="af-companies">
+    <li>Airbus</li>
+    <li>Bombardier</li>
+    <li>MDA Space</li>
+    <li>Bell</li>
+    <li>Pratt &amp; Whitney</li>
+    <li class="af-companies-more">and more&hellip;</li>
+  </ul>
+</section>
+
+{% assign aerofairs = site.events | where: "slug", "aerofair" | sort: 'date' | reverse %}
+{% if aerofairs.size > 0 %}
+  <section class="af-section">
+    <div class="section-heading">
+      <h2>Aerofair through the years</h2>
+    </div>
+
+    <div class="event-grid">
+      {% for event in aerofairs %}
+        {% include event-card.html event=event %}
+      {% endfor %}
+    </div>
+  </section>
+
+  {% for event in aerofairs %}
+    {% assign slug = event.date | date: '%Y-%m-%d' | append: '-' | append: event.slug %}
+    <dialog class="event-dialog" id="event-{{ slug }}">
+      <button class="event-dialog-close" type="button" aria-label="Close">&times;</button>
+
+      {% if event.cover %}
+        <img class="event-dialog-cover" src="{{ event.cover }}" alt="" loading="lazy">
+      {% else %}
+        <span class="event-dialog-cover event-cover--empty" aria-hidden="true"></span>
+      {% endif %}
+
+      <div class="event-dialog-body">
+        <p class="event-date">
+          {{ event.date | date: "%B %-d, %Y" }}{% if event.location %} · {{ event.location }}{% endif %}
+        </p>
+        <h3 class="event-dialog-title">{{ event.title }}</h3>
+
+        <div class="event-tags">
+          {% for tag in event.tags %}
+            <span class="event-tag event-tag--{{ tag | slugify }}">{{ tag }}</span>
+          {% endfor %}
+        </div>
+
+        <div class="event-detail">{{ event.content | markdownify }}</div>
+
+        {% if event.media and event.media.size > 0 %}
+          <h4 class="event-media-heading">Photos</h4>
+          <div class="event-media">
+            {% for photo in event.media %}
+              <img src="{{ photo }}" alt="" loading="lazy">
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </dialog>
+  {% endfor %}
+
+  <script>
+    /* ---- card -> dialog (same pattern as the events page) ---- */
+    document.querySelectorAll('.event-card').forEach(function (card) {
+      var dialog = document.getElementById(card.getAttribute('aria-controls'));
+      if (!dialog) return;
+
+      card.addEventListener('click', function () {
+        dialog.showModal();
+      });
+
+      dialog.querySelector('.event-dialog-close').addEventListener('click', function () {
+        dialog.close();
+      });
+
+      /* clicking outside the dialog box closes it too */
+      dialog.addEventListener('click', function (event) {
+        if (event.target === dialog) dialog.close();
+      });
+    });
+  </script>
+{% endif %}

@@ -768,3 +768,258 @@ footer {
     font-size: 1rem;
   }
 }
+
+/* AEROFAIR PAGE
+   Prefixed .af- so the flagship event can drift from the generic event styling
+   without dragging the events page along with it. */
+
+.af-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 60vh;
+  overflow: hidden;
+  background-color: var(--dark-blue);
+}
+
+.af-hero-bg {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  /* the photo is a backdrop, not the subject — keep the type readable over it */
+  opacity: 0.4;
+}
+
+.af-hero-text {
+  position: relative;
+  z-index: 1;
+  max-width: 75rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 4rem 2rem 3rem;
+  color: #ffffff;
+}
+
+.af-kicker {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.85;
+}
+
+.af-hero-title {
+  margin: 0.5rem 0 0;
+  font-size: 5rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* the swoosh, echoing .title-rule but sized for display type */
+.af-hero-title::after {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 6rem;
+  margin-top: 1rem;
+  background-color: var(--miae-red);
+}
+
+.af-hero-tagline {
+  margin: 1.25rem 0 0;
+  max-width: 34rem;
+  font-size: 1.35rem;
+  line-height: 1.5;
+}
+
+.af-hero-date {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.85;
+}
+
+.af-button {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--miae-blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.af-button:hover {
+  background-color: var(--dark-blue);
+}
+
+.af-section {
+  max-width: 75rem;
+  margin: 3.5rem auto 0;
+}
+
+/* STAT STRIP */
+
+.af-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 0 2rem;
+}
+
+.af-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.75rem 1.25rem;
+  background-color: var(--surface);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.af-stat-figure {
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--miae-red);
+}
+
+.af-stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+/* TWO-UP PANELS */
+
+.af-split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 0 2rem;
+}
+
+.af-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background-color: var(--surface);
+  border-radius: 4px;
+  border-bottom: 3px solid transparent;
+}
+
+/* the panel that leads somewhere gets the red rule the cards use on hover */
+.af-panel--link {
+  border-bottom-color: var(--miae-red);
+}
+
+.af-panel h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  color: var(--dark-blue);
+}
+
+.af-panel p {
+  margin: 0;
+  flex-grow: 1;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* COMPANY LIST */
+
+.af-companies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  max-width: 55rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+  list-style: none;
+}
+
+.af-companies li {
+  padding: 0.6rem 1.25rem;
+  background-color: var(--surface);
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark-blue);
+}
+
+.af-companies-more {
+  background-color: transparent !important;
+  font-weight: 400 !important;
+  font-style: italic;
+  color: var(--grey) !important;
+}
+
+/* CLOSING CALL TO ACTION */
+
+.af-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 75rem;
+  margin: 4rem auto;
+  padding: 3rem 2rem;
+  background-color: var(--surface);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.af-cta h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: var(--dark-blue);
+}
+
+.af-cta p {
+  margin: 0.75rem 0 0;
+  max-width: 38rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .af-hero-title {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .af-hero {
+    min-height: 0;
+  }
+
+  .af-hero-text {
+    padding: 3rem 1.5rem 2.5rem;
+  }
+
+  .af-hero-title {
+    font-size: 2.75rem;
+  }
+
+  .af-hero-tagline {
+    font-size: 1.1rem;
+  }
+
+  .af-cta {
+    margin: 3rem 1rem;
+    padding: 2.5rem 1.5rem;
+  }
+}
