@@ -32,13 +32,17 @@ tags:
 Description of the event. If you're unfamiliar with markdown, see [this](https://www.markdownguide.org/) guide.
 ```
 
-5. After running the website you should see this event show in the events tab
-6. Commit your changes
+5. Shrink your photos before committing. Phone photos are 3-5 MB each and make the site slow to load. Use JPG (not HEIC) and run this from the event's folder, which requires [ImageMagick](https://imagemagick.org) (`brew install imagemagick`):
+```bash
+magick mogrify -auto-orient -resize '1920x1920>' -strip -quality 80 -interlace Plane *.jpg *.jpeg *.JPG
+```
+6. After running the website you should see this event show in the events tab
+7. Commit your changes
     1. `git add .`
     2. `git commit -m 'description of the changes`
     3. `git push`
-7. Open a [PR](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request) and tag one of the members of the organization as a reviewer.
-8. Once approved, merge your PR and see your event on the MIAE website!
+8. Open a [PR](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request) and tag one of the members of the organization as a reviewer.
+9. Once approved, merge your PR and see your event on the MIAE website!
 
 ## People
 
