@@ -1079,6 +1079,24 @@ footer {
   color: var(--grey) !important;
 }
 
+/* VIDEO EMBED */
+
+.video-embed {
+  max-width: 55rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* aspect-ratio instead of the embed's fixed 560x315, so it scales with the page */
+.video-embed iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 4px;
+}
+
 /* SPONSORSHIP TIERS */
 
 .af-tiers {
