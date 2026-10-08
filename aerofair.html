@@ -5,10 +5,10 @@ title: MIAE - Aerofair
 <section class="af-hero">
   <img class="af-hero-bg" src="/assets/events/aerofair-2025/cover.jpg" alt="" fetchpriority="high">
   <div class="af-hero-text">
-    <p class="af-kicker">Our flagship event</p>
     <h1 class="af-hero-title">Aerofair</h1>
+    <p class="af-kicker">Presented by <a href="https://www.prattwhitney.com/" target="_blank" rel="noopener">Pratt &amp; Whitney</a> and <a href="https://www.calian.com/" target="_blank" rel="noopener">Calian</a></p>
     <p class="af-hero-tagline">McGill's only student-focused aerospace career fair.</p>
-    <p class="af-hero-date">Fall 2026 &middot; Date to be announced</p>
+    <p class="af-hero-date">November 5, 2026 &middot; SSMU Ballroom</p>
   </div>
 </section>
 
@@ -21,6 +21,39 @@ title: MIAE - Aerofair
     who want to build what comes next.
   </p>
 </div>
+
+<section class="af-section">
+  <div class="section-heading">
+    <h2>This year's sponsors</h2>
+  </div>
+
+  <ul class="af-sponsors">
+    <li>
+      <a class="af-sponsor af-sponsor--title" href="https://www.prattwhitney.com/" target="_blank" rel="noopener">
+        <span class="af-sponsor-role">Title Sponsor</span>
+        <img class="af-sponsor-logo" src="/assets/pratt.jpg" alt="Pratt &amp; Whitney" loading="lazy">
+      </a>
+    </li>
+    <li>
+      <a class="af-sponsor af-sponsor--title" href="https://www.calian.com/" target="_blank" rel="noopener">
+        <span class="af-sponsor-role">Title Sponsor</span>
+        <img class="af-sponsor-logo" src="/assets/calian.png" alt="Calian" loading="lazy">
+      </a>
+    </li>
+    <li>
+      <a class="af-sponsor" href="https://www.certcentercanada.com/" target="_blank" rel="noopener">
+        <span class="af-sponsor-role">Event Sponsor</span>
+        <img class="af-sponsor-logo" src="/assets/cert_center.png" alt="Cert Center Canada" loading="lazy">
+      </a>
+    </li>
+    <li>
+      <a class="af-sponsor" href="https://www.hutchinson.com/" target="_blank" rel="noopener">
+        <span class="af-sponsor-role">Event Sponsor</span>
+        <img class="af-sponsor-logo" src="/assets/hutchinson.jpg" alt="Hutchinson" loading="lazy">
+      </a>
+    </li>
+  </ul>
+</section>
 
 <section class="af-section">
   <div class="section-heading">
@@ -84,7 +117,8 @@ title: MIAE - Aerofair
   </ul>
 </section>
 
-{% assign aerofairs = site.events | where: "slug", "aerofair" | sort: 'date' | reverse %}
+{% comment %} past fairs only: this year's is the subject of the page itself {% endcomment %}
+{% assign aerofairs = site.events | where: "slug", "aerofair" | where_exp: "e", "e.date < site.time" | sort: 'date' | reverse %}
 {% if aerofairs.size > 0 %}
   <section class="af-section">
     <div class="section-heading">
@@ -123,6 +157,10 @@ title: MIAE - Aerofair
 
         <div class="event-detail">{{ event.content | markdownify }}</div>
 
+        {% if event.video %}
+          {% include event-video.html url=event.video %}
+        {% endif %}
+
         {% if event.media and event.media.size > 0 %}
           <h4 class="event-media-heading">Photos</h4>
           <div class="event-media">
@@ -152,6 +190,13 @@ title: MIAE - Aerofair
       /* clicking outside the dialog box closes it too */
       dialog.addEventListener('click', function (event) {
         if (event.target === dialog) dialog.close();
+      });
+
+      /* closing the dialog stops any video: reloading the frame halts playback */
+      dialog.addEventListener('close', function () {
+        dialog.querySelectorAll('.event-video iframe').forEach(function (frame) {
+          frame.src = frame.src;
+        });
       });
     });
   </script>

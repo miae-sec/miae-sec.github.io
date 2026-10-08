@@ -233,6 +233,51 @@ nav a.is-active {
   }
 }
 
+/* SPONSOR BANNER (every page, above the footer) */
+
+.sponsor-banner {
+  margin-top: 4rem;
+  padding: 2rem;
+  /* white to match the logos' own backgrounds */
+  background-color: #fff;
+  border-top: 3px solid var(--miae-red);
+  text-align: center;
+  font-family: var(--font-base);
+}
+
+.sponsor-banner-label {
+  margin: 0 0 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dark-blue);
+}
+
+.sponsor-banner-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.sponsor-banner-logos a {
+  display: block;
+  transition: opacity 0.2s;
+}
+
+.sponsor-banner-logos a:hover {
+  opacity: 0.7;
+}
+
+.sponsor-banner-logos img {
+  display: block;
+  height: 5rem;
+  width: 11rem;
+  object-fit: contain;
+}
+
 /* FOOTER */
 
 footer {
@@ -459,6 +504,122 @@ footer {
 @media (max-width: 768px) {
   .home-cards {
     flex-direction: column;
+  }
+}
+
+/* AEROFAIR FEATURE: text on a dark panel, photo beside it.
+   The fair photos are portrait, so a split keeps them from cropping to a sliver. */
+
+.home-feature {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  max-width: 75rem;
+  margin: 3rem auto 1rem;
+  overflow: hidden;
+  background-color: var(--dark-blue);
+  border-top: 3px solid var(--miae-red);
+  border-radius: 4px;
+  color: #fff;
+}
+
+/* the page's other sections inset 2rem from the edge */
+@media (max-width: 79rem) {
+  .home-feature {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+
+.home-feature-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.home-feature-kicker {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--miae-red);
+}
+
+.home-feature-title {
+  margin: 0.5rem 0 0;
+  font-size: 3.5rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.home-feature-tagline {
+  margin: 1.25rem 0 0;
+  max-width: 34rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.home-feature-meta {
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.home-feature-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.home-feature-actions .af-button {
+  margin-top: 0;
+}
+
+/* the ghost button's blue outline disappears on the dark panel */
+.af-button--light {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px #fff;
+}
+
+.af-button--light:hover {
+  background-color: #fff;
+  color: var(--dark-blue);
+}
+
+.home-feature-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 22rem;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+@media (max-width: 768px) {
+  .home-feature {
+    grid-template-columns: 1fr;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  /* photo first on phones, as a banner above the text */
+  .home-feature-image {
+    order: -1;
+    min-height: 0;
+    height: 14rem;
+  }
+
+  .home-feature-text {
+    padding: 2rem 1.5rem;
+  }
+
+  .home-feature-title {
+    font-size: 2.5rem;
   }
 }
 
@@ -811,6 +972,29 @@ footer {
   margin-bottom: 0;
 }
 
+.event-video {
+  margin-top: 1.5rem;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: var(--dark-blue);
+  border-radius: 3px;
+}
+
+/* Shorts are 9:16; cap the width so the frame fits in the dialog without scrolling */
+.event-video--vertical {
+  aspect-ratio: 9 / 16;
+  width: min(100%, 20rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.event-video iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .event-media-heading {
   margin: 1.75rem 0 0.75rem;
   font-size: 0.75rem;
@@ -900,6 +1084,16 @@ footer {
   opacity: 0.85;
 }
 
+.af-kicker a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.af-kicker a:hover {
+  border-bottom-color: currentColor;
+}
+
 .af-hero-title {
   margin: 0.5rem 0 0;
   font-size: 5rem;
@@ -915,6 +1109,11 @@ footer {
   width: 6rem;
   margin-top: 1rem;
   background-color: var(--miae-red);
+}
+
+/* a kicker placed under the title needs room to clear the swoosh */
+.af-hero-title + .af-kicker {
+  margin-top: 1.25rem;
 }
 
 .af-hero-tagline {
@@ -1048,6 +1247,77 @@ footer {
   flex-grow: 1;
   font-size: 0.95rem;
   line-height: 1.65;
+}
+
+/* SPONSORS */
+
+/* two per row: title sponsors on top, event sponsors beneath */
+.af-sponsors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0 2rem;
+  list-style: none;
+}
+
+@media (max-width: 600px) {
+  .af-sponsors {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* white cards, since the logos themselves are on white */
+.af-sponsor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem 2rem 2rem;
+  background-color: #fff;
+  border: 1px solid var(--light-grey);
+  border-top: 3px solid var(--miae-blue);
+  border-radius: 4px;
+  height: 100%;
+  box-sizing: border-box;
+  text-decoration: none;
+  transition: box-shadow 0.2s;
+}
+
+.af-sponsor:hover {
+  box-shadow: 0 4px 16px rgba(20, 42, 68, 0.12);
+}
+
+.af-sponsor--title {
+  border-top-color: var(--miae-red);
+}
+
+.af-sponsor-role {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--miae-blue);
+}
+
+.af-sponsor--title .af-sponsor-role {
+  color: var(--miae-red);
+  text-decoration: none;
+}
+
+/* a fixed box so square and very wide logos read at a similar weight */
+.af-sponsor-logo {
+  display: block;
+  width: 100%;
+  max-width: 18rem;
+  height: 5rem;
+  margin: auto 0;
+  object-fit: contain;
+}
+
+.af-sponsor--title .af-sponsor-logo {
+  max-width: 22rem;
+  height: 9rem;
 }
 
 /* COMPANY LIST */

@@ -76,6 +76,10 @@ title: MIAE - Events
 
       <div class="event-detail">{{ event.content | markdownify }}</div>
 
+      {% if event.video %}
+        {% include event-video.html url=event.video %}
+      {% endif %}
+
       {% if event.media and event.media.size > 0 %}
         <h4 class="event-media-heading">Photos</h4>
         <div class="event-media">
@@ -105,6 +109,13 @@ title: MIAE - Events
     /* clicking outside the dialog box closes it too */
     dialog.addEventListener('click', function (event) {
       if (event.target === dialog) dialog.close();
+    });
+
+    /* closing the dialog stops any video: reloading the frame halts playback */
+    dialog.addEventListener('close', function () {
+      dialog.querySelectorAll('.event-video iframe').forEach(function (frame) {
+        frame.src = frame.src;
+      });
     });
   });
 
