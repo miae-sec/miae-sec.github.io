@@ -1150,6 +1150,15 @@ footer {
   background-color: var(--dark-blue);
 }
 
+/* for the hero, where the navy button would sink into the dark backdrop */
+.af-button--accent {
+  background-color: var(--miae-red);
+}
+
+.af-button--accent:hover {
+  background-color: #b3141f;
+}
+
 .af-button--ghost {
   background-color: transparent;
   color: var(--miae-blue);
