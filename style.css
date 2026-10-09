@@ -1342,11 +1342,46 @@ footer {
   color: var(--dark-blue);
 }
 
+/* negative margins stretch the link back over the chip's padding, so the whole
+   pill is the hit target without the list item needing to know it holds a link */
+.af-companies a {
+  display: block;
+  margin: -0.6rem -1.25rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+
+.af-companies a:hover,
+.af-companies a:focus-visible {
+  background-color: var(--light-grey);
+}
+
 .af-companies-more {
   background-color: transparent !important;
   font-weight: 400 !important;
   font-style: italic;
   color: var(--grey) !important;
+}
+
+/* quieter than .section-heading — it splits one section into two lists rather
+   than introducing a new section */
+.af-group-label {
+  max-width: 55rem;
+  margin: 2rem auto 0.9rem;
+  padding: 0 2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--grey);
+}
+
+/* the first label sits right under the section heading, which already has space */
+.af-group-label:first-of-type {
+  margin-top: 0;
 }
 
 /* VIDEO EMBED */

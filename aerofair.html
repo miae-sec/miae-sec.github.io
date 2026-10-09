@@ -68,6 +68,37 @@ title: MIAE - Aerofair
 
 <section class="af-section">
   <div class="section-heading">
+    <h2>Who's coming this year</h2>
+  </div>
+
+  <h3 class="af-group-label">Companies</h3>
+  <ul class="af-companies">
+    <li><a href="https://bombardier.com/en" target="_blank" rel="noopener">Bombardier</a></li>
+    <li><a href="https://mda.space/" target="_blank" rel="noopener">MDA Space</a></li>
+    <li><a href="https://www.herouxdevtek.com/" target="_blank" rel="noopener">Héroux-Devtek</a></li>
+    <li><a href="https://www.altitudeaero.com/" target="_blank" rel="noopener">Altitude Aero</a></li>
+    <li><a href="https://www.cae.com/" target="_blank" rel="noopener">CAE</a></li>
+    <li><a href="https://www.certcentercanada.com/" target="_blank" rel="noopener">Cert Center Canada</a></li>
+    <li><a href="https://dcm.aero/" target="_blank" rel="noopener">DCM Aero</a></li>
+    <li><a href="https://www.mecaer.com/" target="_blank" rel="noopener">Mecaer</a></li>
+    <li><a href="https://www.hutchinson.com/" target="_blank" rel="noopener">Hutchinson</a></li>
+    <li><a href="https://www.airbus.com/" target="_blank" rel="noopener">Airbus</a></li>
+    <li><a href="https://www.prattwhitney.com/" target="_blank" rel="noopener">Pratt &amp; Whitney</a></li>
+    <li><a href="https://www.calian.com/" target="_blank" rel="noopener">Calian</a></li>
+    <li><a href="https://www.reactiondynamics.space/" target="_blank" rel="noopener">Reaction Dynamics</a></li>
+  </ul>
+
+  <h3 class="af-group-label">Student clubs</h3>
+  <ul class="af-companies">
+    <li><a href="https://madmcgill.vercel.app/" target="_blank" rel="noopener">McGill Aerial Design (MAD)</a></li>
+    <li><a href="https://mcgillrocketteam.com/" target="_blank" rel="noopener">McGill Rocket Team (MRT)</a></li>
+    <li><a href="https://mcgillrobotics.com/" target="_blank" rel="noopener">McGill Robotics</a></li>
+    <li><a href="https://mcgillflyingclub.com/" target="_blank" rel="noopener">McGill Flying Club</a></li>
+  </ul>
+</section>
+
+<section class="af-section">
+  <div class="section-heading">
     <h2>Last year in numbers</h2>
   </div>
 
@@ -113,22 +144,6 @@ title: MIAE - Aerofair
   </div>
 </section>
 
-<section class="af-section">
-  <div class="section-heading">
-    <h2>Last year's companies</h2>
-  </div>
-
-  <ul class="af-companies">
-    <li>Airbus</li>
-    <li>Bombardier</li>
-    <li>MDA Space</li>
-    <li>Bell</li>
-    <li>Pratt &amp; Whitney</li>
-    <li class="af-companies-more">and more&hellip;</li>
-  </ul>
-</section>
-
-{% comment %} past fairs only: this year's is the subject of the page itself {% endcomment %}
 {% assign aerofairs = site.events | where: "slug", "aerofair" | where_exp: "e", "e.date < site.time" | sort: 'date' | reverse %}
 {% if aerofairs.size > 0 %}
   <section class="af-section">
