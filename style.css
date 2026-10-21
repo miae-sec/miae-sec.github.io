@@ -414,10 +414,20 @@ footer {
   max-width: 45rem;
 }
 
+/* same width and side insets as the Aerofair and newsletter panels */
 .home-cards {
   display: flex;
   gap: 1.5rem;
-  padding: 2rem;
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+@media (max-width: 79rem) {
+  .home-cards {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
 }
 
 .home-card {
@@ -459,9 +469,263 @@ footer {
 @media (max-width: 768px) {
   .home-cards {
     flex-direction: column;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 }
 
+<<<<<<< Updated upstream
+=======
+/* AEROFAIR FEATURE: text on a dark panel, photo beside it.
+   The fair photos are portrait, so a split keeps them from cropping to a sliver. */
+
+.home-feature {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  max-width: 75rem;
+  margin: 3rem auto 1rem;
+  overflow: hidden;
+  background-color: var(--dark-blue);
+  border-top: 3px solid var(--miae-red);
+  border-radius: 4px;
+  color: #fff;
+}
+
+/* the page's other sections inset 2rem from the edge */
+@media (max-width: 79rem) {
+  .home-feature {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+
+.home-feature-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.home-feature-kicker {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--miae-red);
+}
+
+.home-feature-title {
+  margin: 0.5rem 0 0;
+  font-size: 3.5rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.home-feature-tagline {
+  margin: 1.25rem 0 0;
+  max-width: 34rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.home-feature-meta {
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.home-feature-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.home-feature-actions .af-button {
+  margin-top: 0;
+}
+
+/* the ghost button's blue outline disappears on the dark panel */
+.af-button--light {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px #fff;
+}
+
+.af-button--light:hover {
+  background-color: #fff;
+  color: var(--dark-blue);
+}
+
+.home-feature-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 22rem;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+@media (max-width: 768px) {
+  .home-feature {
+    grid-template-columns: 1fr;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  /* photo first on phones, as a banner above the text */
+  .home-feature-image {
+    order: -1;
+    min-height: 0;
+    height: 14rem;
+  }
+
+  .home-feature-text {
+    padding: 2rem 1.5rem;
+  }
+
+  .home-feature-title {
+    font-size: 2.5rem;
+  }
+}
+
+/* HOME NEWSLETTER SIGNUP
+   a light counterpart to the Aerofair panel above it */
+
+.home-newsletter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem 3rem;
+  max-width: 75rem;
+  margin: 1.5rem auto 1rem;
+  padding: 2.5rem 3rem;
+  box-sizing: border-box;
+  background-color: var(--surface);
+  border-top: 3px solid var(--miae-blue);
+  border-radius: 4px;
+  color: var(--text);
+}
+
+@media (max-width: 79rem) {
+  .home-newsletter {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+
+.home-newsletter-kicker {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--miae-blue);
+}
+
+.home-newsletter-title {
+  margin: 0.5rem 0 0;
+  font-size: 2.25rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--dark-blue);
+}
+
+.home-newsletter-tagline {
+  margin: 1rem 0 0;
+  max-width: 30rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.home-newsletter-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--dark-blue);
+}
+
+.home-newsletter-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.home-newsletter-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  background-color: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+}
+
+.home-newsletter-input:focus {
+  outline: 2px solid var(--miae-blue);
+  outline-offset: 1px;
+  border-color: var(--miae-blue);
+}
+
+.home-newsletter-row .af-button {
+  align-self: stretch;
+  margin-top: 0;
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.home-newsletter-row .af-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.home-newsletter-note {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--grey);
+}
+
+.home-newsletter-response {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--miae-blue);
+}
+
+.home-newsletter-response:empty {
+  display: none;
+}
+
+.home-newsletter-response.is-error {
+  color: var(--miae-red);
+}
+
+@media (max-width: 768px) {
+  .home-newsletter {
+    grid-template-columns: 1fr;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .home-newsletter-title {
+    font-size: 1.85rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .home-newsletter-row {
+    flex-direction: column;
+  }
+}
+
+>>>>>>> Stashed changes
 /* ABOUT PAGE */
 
 .page-intro {

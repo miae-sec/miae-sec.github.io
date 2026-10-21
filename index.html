@@ -16,6 +16,113 @@ title: Home
   <p class="subtitle-b">MIAE's Student Executive Committee</p>
 </div>
 
+<<<<<<< Updated upstream
+=======
+<section class="home-feature" aria-label="Aerofair 2026">
+  <div class="home-feature-text">
+    <p class="home-feature-kicker">Coming soon &middot; November 5, 2026</p>
+    <h2 class="home-feature-title">Aerofair 2026</h2>
+    <p class="home-feature-tagline">
+      McGill's only student-focused aerospace career fair is back. Meet leading aerospace
+      companies from across Montreal, catch live presentations, and talk one-on-one with the
+      people hiring.
+    </p>
+    <p class="home-feature-meta">
+      SSMU Ballroom &middot; Presented by Pratt &amp; Whitney and Calian
+    </p>
+    <div class="home-feature-actions">
+      <a class="af-button" href="/aerofair">Learn more</a>
+      <a class="af-button af-button" href="/partnership">Partner with us</a>
+    </div>
+  </div>
+  <img class="home-feature-image"
+       src="/assets/events/aerofair-2025/Still%202025-11-19%20012317_1.33.1.jpg"
+       alt="A recruiter at the Pratt &amp; Whitney booth at Aerofair 2025" loading="lazy">
+</section>
+
+<section class="home-newsletter" aria-labelledby="newsletter-title">
+  <div class="home-newsletter-text">
+    <p class="home-newsletter-kicker">Newsletter &middot; Every two weeks</p>
+    <h2 class="home-newsletter-title" id="newsletter-title">Stay in the loop</h2>
+    <p class="home-newsletter-tagline">
+      Upcoming events, workshops, and industry opportunities, straight to your inbox.
+    </p>
+  </div>
+
+  <!-- posts to Mailchimp; the script below swaps in an inline response when JS is available -->
+  <form class="home-newsletter-form" id="newsletter-form"
+        action="https://mcgill.us13.list-manage.com/subscribe/post?u=f26ba4862c6d00670eb72c7fd&amp;id=27580c3b17&amp;f_id=00877fe9f0"
+        method="post" target="_blank">
+    <label class="home-newsletter-label" for="newsletter-email">Email address</label>
+    <div class="home-newsletter-row">
+      <input class="home-newsletter-input" type="email" name="EMAIL" id="newsletter-email"
+             placeholder="you@mail.mcgill.ca" autocomplete="email" required>
+      <button class="af-button af-button--accent" type="submit">Subscribe</button>
+    </div>
+    <!-- bot trap: real people never see or fill this -->
+    <div aria-hidden="true" style="position: absolute; left: -5000px;">
+      <input type="text" name="b_f26ba4862c6d00670eb72c7fd_27580c3b17" tabindex="-1" value="">
+    </div>
+    <p class="home-newsletter-note">
+      By signing up you agree to receive regular newsletters about MIAE public events.
+      Becoming an MIAE member gives you access to member-only events.
+    </p>
+    <p class="home-newsletter-response" id="newsletter-response" role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<script>
+  // Mailchimp's post-json endpoint answers over JSONP, which lets the form
+  // report success or errors in place instead of opening a new tab.
+  (function () {
+    var form = document.getElementById('newsletter-form');
+    var response = document.getElementById('newsletter-response');
+    var button = form.querySelector('button');
+
+    function show(message, isError) {
+      // Mailchimp messages can carry HTML and a "0 - " field prefix
+      var tmp = document.createElement('div');
+      tmp.innerHTML = message;
+      response.textContent = (tmp.textContent || '').replace(/^\d+ - /, '');
+      response.classList.toggle('is-error', isError);
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      button.disabled = true;
+      response.textContent = '';
+
+      var callback = 'mcCallback' + Date.now();
+      var script = document.createElement('script');
+
+      function done() {
+        button.disabled = false;
+        script.remove();
+        delete window[callback];
+      }
+
+      window[callback] = function (data) {
+        if (data.result === 'success') {
+          form.reset();
+        } else {
+          show(data.msg, true);
+        }
+        done();
+      };
+
+      script.onerror = function () {
+        show('Something went wrong. Please try again in a moment.', true);
+        done();
+      };
+
+      var params = new URLSearchParams(new FormData(form)).toString();
+      script.src = form.action.replace('/post?', '/post-json?') + '&' + params + '&c=' + callback;
+      document.body.appendChild(script);
+    });
+  })();
+</script>
+
+>>>>>>> Stashed changes
 <div class="home-cards">
   <div class="home-card">
     <h3>Workshops and Challenges</h3>
