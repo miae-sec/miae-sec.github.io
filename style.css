@@ -1276,6 +1276,12 @@ footer {
   }
 }
 
+/* event sponsors sit in their own row, as many across as fit */
+.af-sponsors--event {
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  margin-top: 1.5rem;
+}
+
 /* white cards, since the logos themselves are on white */
 .af-sponsor {
   display: flex;
